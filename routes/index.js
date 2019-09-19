@@ -13,10 +13,17 @@ var moment = require('moment');
 router.get('/', function(req, res, next) {
 
     // 이벤트 로딩
-  var mom=moment(events[1].start,"YYYY-MM-DDTHH:mm");
-  console.log(mom);
-  console.log(mom.format('YYYY[-]MM[-]DD HH:mm'));
-  // 이벤트에서 시간 파싱함
+  var str=moment(events[1].start,"YYYY-MM-DDTHH:mm");
+  var end=moment(events[1].end,"YYYY-MM-DDTHH:mm");
+  str_d=str.format("DD");
+  end_d=end.format("DD");
+  tt = "02"
+  tt *= 1;
+  console.log(typeof tt);
+  console.log(tt);
+  // 이벤트에서 시간 파싱해서 number형으로 바꿈
+  // 이거이제 연산해서 ejs로보낸담에 ejs에서
+  // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
   res.render('index', { title: 'Express' });
 });
 
