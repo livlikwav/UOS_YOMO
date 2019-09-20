@@ -162,7 +162,7 @@ body {
   background: #4786ff;
   border: 0;
   border-radius: 4px;
-  grid-column: 3 / span 3;
+  grid-column: 7 / span 1;
   grid-row: 4;
   align-self: end;
   color: #fff;

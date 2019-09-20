@@ -21,25 +21,40 @@
         <% for(let i = 0 ; i < 7 ; i++){%>
           <span class="day-name"><%= names[i] %></span>
         <% } %>
+        <% var first=0; %>
         <% var tag_class = "day day--disabled"; %>
         <% for(let i = 0 ; i < 35 ; i++){ %>
-          <% if(i>0 && days[i-1] > days[i] ) {%>
+          <% if(i > 0 && i < 25 && days[i-1] > days[i] ) {%>
+          <% first=i; %>
           <% tag_class = "day"; } %>
           <% if(i>25 && days[i-1] > days[i] ) {%>
           <% tag_class = "day day--disabled"; } %>
         <div class= '<%= tag_class %>' ><%= days[i] %></div>
         <%}%>
         ////////////////////////////////////////////////////////
-        <section class="task task--warning">Projects</section>
-        <section class="task task--danger">Design Sprint</section>
+
+        <% for(let i = 0 ; i < 5 ; i++){%>
+
+          <% var str_date = first+event_array[i].str; %>
+          <% var row = parseInt((str_date-1) / 7)+2; %>
+          <% console.log(row); %>
+          <% var col = str_date % 7; if(col==0){col=7;}%>
+          <% var len=event_array[i].end - event_array[i].str + 1; %>
+
+          <section class="task task--warning" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;"  >
+            <%=event_array[i].event_title %>
+          </section>
+        <%}%>
+<%#
         <section class="task task--primary">Product Checkup 1
           <div class="task__detail">
             <h2>Product Checkup 1</h2>
             <p>15-17th November</p>
           </div>
         </section>
+        %>
         <section class="task task--info">Product Checkup 2</section>
-        /////////task에 grid-column 수정하면 일정 붙이기가능//////////////
+        /////////task에 grid-column 수정하면 일정 붙임//////////////
       </div>
     </div>
   </body>
