@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var listRouter = require('./list/list');
 /////////////////
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -9,6 +10,7 @@ global.document = document;
 var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
 var moment = require('moment');
+router.use('/list', listRouter);
 /* GET home page. */
 router.get('/', function(req, res, next) {
 var event_array = new Array();

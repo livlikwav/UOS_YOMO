@@ -23,15 +23,17 @@
         <% } %>
         <% var first=0; %>
         <% var tag_class = "day day--disabled"; %>
+        <% var url=""; %>
         <% for(let i = 0 ; i < 35 ; i++){ %>
+
           <% if(i > 0 && i < 25 && days[i-1] > days[i] ) {%>
-          <% first=i; %>
+          <% first=i;%>
+          <% url="./list?date="+days[i]; %>
           <% tag_class = "day"; } %>
           <% if(i>25 && days[i-1] > days[i] ) {%>
           <% tag_class = "day day--disabled"; } %>
-        <div class= '<%= tag_class %>' ><%= days[i] %></div>
+        <div class= '<%= tag_class %>' <% if(tag_class=="day"){ %> onclick="location.href= '<%= url %>';" <% }%>><%= days[i] %></div>
         <%}%>
-        ////////////////////////////////////////////////////////
 
         <% for(let i = 0 ; i < 5 ; i++){%>
 
@@ -54,7 +56,6 @@
         </section>
         %>
         <section class="task task--info">Product Checkup 2</section>
-        /////////task에 grid-column 수정하면 일정 붙임//////////////
       </div>
     </div>
   </body>
