@@ -12,6 +12,10 @@ var $ = jQuery = require('jquery')(window);
 var moment = require('moment');
 router.use('/list', listRouter);
 /* GET home page. */
+router.get('/login', function(req, res, next) {
+  console.log('hi');
+  res.render('login');
+});
 router.get('/', function(req, res, next) {
 var event_array = new Array();
     // 이벤트 로딩
