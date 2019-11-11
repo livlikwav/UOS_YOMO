@@ -9,6 +9,7 @@ const { document } = (new JSDOM('')).window;
 global.document = document;
 var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
+
 var moment = require('moment');
 router.use('/list', listRouter);
 /* GET home page. */
@@ -31,7 +32,7 @@ for(var i =0;i<5;i++){
   console.log(event_array);
 }
 
-  res.render('index', { title: 'Express' ,event_array:event_array });
+  res.render('index', { title: '시립 요모: 시립대 요번주 모하나?' ,event_array:event_array });
 });
 
 module.exports = router;
