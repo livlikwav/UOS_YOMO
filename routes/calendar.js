@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var listRouter = require('./list/list');
+var listRouter = require('./list');
 /////////////////
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -12,30 +12,26 @@ var $ = jQuery = require('jquery')(window);
 var moment = require('moment');
 router.use('/list', listRouter);
 /* GET home page. */
-router.get('/login', function(req, res, next) {
-  console.log('hi');
-  res.render('login');
-});
 router.get('/', function(req, res, next) {
-var event_array = new Array();
-    // 이벤트 로딩
-for(var i =0;i<5;i++){
-  var str=moment(events[i].start,"YYYY-MM-DDTHH:mm");
-  var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
-  str_d=str.format("DD");
-  end_d=end.format("DD");
-  str_d*=1;
-  end_d*=1;
-  // *=1 을해주는 이유는 string을 number형으로 바꾸기 위해
+  var event_array = new Array();
+      // 이벤트 로딩
+  for(var i =0;i<5;i++){
+    var str=moment(events[i].start,"YYYY-MM-DDTHH:mm");
+    var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
+    str_d=str.format("DD");
+    end_d=end.format("DD");
+    str_d*=1;
+    end_d*=1;
+    // *=1 을해주는 이유는 string을 number형으로 바꾸기 위해
 
-  // 이벤트에서 시간 파싱해서 number형으로 바꿈
-  // 이거이제 연산해서 ejs로보낸담에 ejs에서
-  // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
-  event_array[i]={str:str_d,end:end_d,event_title:events[i].title};
-  console.log(event_array);
-}
+    // 이벤트에서 시간 파싱해서 number형으로 바꿈
+    // 이거이제 연산해서 ejs로보낸담에 ejs에서
+    // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
+    event_array[i]={str:str_d,end:end_d,event_title:events[i].title};
+    console.log(event_array);
+  }
 
-  res.render('index', { title: 'Express' ,event_array:event_array });
+  res.render('calendar', { title: 'Express' ,event_array:event_array });
 });
 
 module.exports = router;
@@ -48,7 +44,7 @@ var events=[{
         "title": "거래처 미팅",
         "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
         "start": "2019-05-11T09:30",
-        "end": "2019-05-11T15:00",
+        "end": "2019-05-13T15:00",
         "type": "카테고리1",
         "username": "다현",
         "backgroundColor": "#D25565",
@@ -58,8 +54,8 @@ var events=[{
         "_id": 2,
         "title": "치과예약",
         "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
-        "start": "2019-05-17T12:30",
-        "end": "2019-05-17T15:30",
+        "start": "2019-05-10T12:30",
+        "end": "2019-05-15T15:30",
         "type": "카테고리1",
         "username": "나연",
         "backgroundColor": "#9775fa",
@@ -69,8 +65,8 @@ var events=[{
         "_id": 3,
         "title": "철수 생일",
         "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
-        "start": "2019-05-12",
-        "end": "2019-05-12",
+        "start": "2019-05-11",
+        "end": "2019-05-11",
         "type": "카테고리2",
         "username": "다현",
         "backgroundColor": "#ffa94d",
@@ -80,8 +76,8 @@ var events=[{
         "_id": 4,
         "title": "멜론 만기",
         "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
-        "start": "2019-05-06",
-        "end": "2019-05-06",
+        "start": "2019-05-11",
+        "end": "2019-05-12",
         "type": "카테고리2",
         "username": "지효",
         "backgroundColor": "#74c0fc",
