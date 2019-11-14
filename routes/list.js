@@ -17,7 +17,7 @@ var moment = require('moment');
 var events=[{
         "_id": 1,
         "title": "거래처 미팅",
-        "description": "11일부터 13일까지 거래처 미팅 있습니다.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nam error ipsa commodi exercitationem fugiat praesentium tempore inventore voluptate dolore. Ipsa quisquam nemo enim explicabo aut accusantium ex ab perspiciatis.",
         "start": "2019-05-11T09:30",
         "end": "2019-05-13T15:00",
         "type": "카테고리1",
@@ -29,7 +29,7 @@ var events=[{
       }, {
         "_id": 2,
         "title": "치과예약",
-        "description": "10일부터 15일까지 밝은미소치과 예약입니다.",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nam error ipsa commodi exercitationem fugiat praesentium tempore inventore voluptate dolore. Ipsa quisquam nemo enim explicabo aut accusantium ex ab perspiciatis.",
         "start": "2019-05-10T12:30",
         "end": "2019-05-15T15:30",
         "type": "카테고리1",
@@ -155,6 +155,14 @@ router.get('/', function(req, res,  next) {
   var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
   str_d=str.format("DD");
   end_d=end.format("DD");
+  str_h = str.format("HH");
+  str_m = str.format("mm");
+  end_h = end.format("HH");
+  end_m = end.format("mm");
+  //str_h*=1;
+  //str_m*=1;
+  //end_h*=1;
+  //end_m*=1;
   str_d*=1;
   end_d*=1;
   // *=1 을해주는 이유는 string을 number형으로 바꾸기 위해
@@ -162,7 +170,7 @@ router.get('/', function(req, res,  next) {
   // 이벤트에서 시간 파싱해서 number형으로 바꿈
   // 이거이제 연산해서 ejs로보낸담에 ejs에서
   // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
-  event_array[i]={str:str_d,end:end_d,event_title:events[i].title, description:events[i].description , filename:events[i].filename};
+  event_array[i]={str:str_d,end:end_d,event_title:events[i].title, description:events[i].description , filename:events[i].filename, str_h:str_h, str_m:str_m, end_h:end_h, end_m:end_m, username:events[i].username};
   console.log(event_array);
   
 }
