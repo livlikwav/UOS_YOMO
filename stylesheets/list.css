@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: #edf2f7;
+  color: #4a5568;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+details {
+  font-size: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  background:#ffffff;
+  border-radius: 8px;
+  position: relative;
+  opacity:1;
+}
+details .summary-title {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+details:hover .summary{
+   
+  cursor: pointer;
+  
+}
+details .summary-content {
+  overflow:hidden;
+  border-top: 1px solid #e2e8f0;
+  cursor: default;
+  padding: 1em;
+  font-weight: 300;
+  line-height: 1.5;
+}
+details summary {
+  padding: 1em;
+  margin-bottom:20px; 
+  opacity:0.8;
+  background:#eee;
+}
+
+details summary:focus {
+  outline: none;
+}
+details summary:hover .darkness{
+    opacity:0.4;
+}
+details summary:hover .summary-chevron-up svg  {
+  opacity: 1;
+}
+details .summary-chevron-up svg {
+  opacity: 0.5;
+}
+details .summary-chevron-up,
+details .summary-chevron-down {
+  pointer-events: none;
+  position: absolute;
+  top: 0.75em;
+  right: 1em;
+  background: #ffffff;
+}
+details .summary-chevron-up svg,
+details .summary-chevron-down svg {
+  display: block;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+.darkness {
+  position:relative;
+  top:0;
+  left:0;
+  width:inherit;
+  height:inherit;
+  background:#000000;
+  /* 추가된 부분 */
+  opacity:0;
+  transition:all .6s linear;
+}
+details summary:hover{
+    opacity:1;
+}
+.img {
+    float:left;
+    width:500px;
+    margin-right:50px;
+}
+.content {
+    float:left;
+    width:250px;
+}
+.title {
+    text-align:center;
+    position:relative;
+}
+.description{
+    text-align:center;
+    position:relative;
+}
