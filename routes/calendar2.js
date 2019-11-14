@@ -13,8 +13,54 @@ var moment = require('moment');
 router.use('/list', listRouter);
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  ///////현재 달력 출력//////////////
+  var today = new Date();
+  var shift_mon=2;
+  today= new Date(today.getFullYear(),today.getMonth()-shift_mon,1);
+  var first = new Date(today.getFullYear(),today.getMonth(),1);
+  var end = new Date(today.getFullYear(),today.getMonth()+1,0);
+
+  console.log(first+today+end);
+
+  //전달 날짜
+  var lastday= new Date(today.getFullYear(),today.getMonth(),0);
+  lastdate= lastday.getDate();
+  var days=new Array();
+  var lines=0;
+  // 이전 달의 날짜들
+  if(first.getDay()!=1){
+    for(i=0;i<=lastday.getDay()-1;i++){
+      days.push(lastdate-lastday.getDay()+i);
+    }
+    lines++;
+  }
+  // 현재 달의 날짜들
+  for(var j=1;j<=end.getDate();j++){
+    days.push(j);
+  }
+  // 다음 달의 날짜들
+  if(end.getDay()!=0){
+    console.log(end.getDay());
+    for(var j=1;j<=7-(end.getDay()+1);j++){
+      days.push(j);
+    }
+    lines++;
+  }
+  lines=lines+4;
+  var month;
+  var year;
+  console.log(days);
+//////////////////////////////////////
+
+
+
+////////이벤트 출력 ///////////////////////
   var event_array = new Array();
-      // 이벤트 로딩
+      // 이벤트 로딩 //
+
+      // 여기에 디비에서 이벤트 받아오는 구문 넣으면 됨
+
+      /////////////////
   for(var i =0;i<5;i++){
     var str=moment(events[i].start,"YYYY-MM-DDTHH:mm");
     var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
@@ -30,8 +76,8 @@ router.get('/', function(req, res, next) {
     event_array[i]={str:str_d,end:end_d,event_title:events[i].title};
     console.log(event_array);
   }
-
-  res.render('calendar', { title: 'Express' ,event_array:event_array });
+/////////////////////////////////////////////
+  res.render('calendar', { title: 'Express' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
 });
 
 module.exports = router;
