@@ -78,7 +78,7 @@ router.get('/', function(req, res, next) {
     console.log(event_array);
   }
 /////////////////////////////////////////////
-  res.render('calendar', { title: 'Express' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
+  res.render('calendar', { title: '시립대 요즘뭐하지? YOMO' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
 });
 
 module.exports = router;
