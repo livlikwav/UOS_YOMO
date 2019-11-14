@@ -137,7 +137,7 @@ body {
   grid-column: 4 / span 3;
   grid-row: 3;
   background: #fef0db;
-  align-self: center;
+  align-self: baseline;
   color: #fc9b10;
   margin-top: -5px;
 }
