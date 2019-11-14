@@ -9,6 +9,7 @@ const { document } = (new JSDOM('')).window;
 global.document = document;
 var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
+
 var moment = require('moment');
 router.use('/list', listRouter);
 /* GET home page. */
@@ -76,8 +77,13 @@ router.get('/', function(req, res, next) {
     event_array[i]={str:str_d,end:end_d,event_title:events[i].title};
     console.log(event_array);
   }
+<<<<<<< HEAD:routes/calendar2.js
 /////////////////////////////////////////////
   res.render('calendar', { title: 'Express' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
+=======
+
+  res.render('calendar', { title: '시립 요모 : 시립대 요번주 모하나' ,event_array:event_array });
+>>>>>>> f6bdcb22309a8eb75d79a35e0fcc4211e224d7ab:routes/calendar.js
 });
 
 module.exports = router;
