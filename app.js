@@ -7,8 +7,8 @@ var logger = require('morgan');
 
 var config = require('./config');
 var database = require('./database/database');
+var route_loader=require('./routes/route_loader');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -28,8 +28,10 @@ app.use(expressSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 database.init(app, config);
+
+//라우팅 정보를 읽어들여 라우팅 설정
+route_loader.init(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
