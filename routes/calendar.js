@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
   ///////현재 달력 출력//////////////
   var today = new Date();
   var shift_mon=2;
+  // 몇달 옮겼는지
   today= new Date(today.getFullYear(),today.getMonth()-shift_mon,1);
   var first = new Date(today.getFullYear(),today.getMonth(),1);
   var end = new Date(today.getFullYear(),today.getMonth()+1,0);

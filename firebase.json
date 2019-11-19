@@ -12,7 +12,15 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+<<<<<<< HEAD
     ]
+=======
+    ],
+    "rewrites": [{
+      "source": "/timestamp",
+      "function": "app"
+      }]
+>>>>>>> fc03c89dc87d17119bb89fd29edbaae85635b41f
   },
   "storage": {
     "rules": "storage.rules"

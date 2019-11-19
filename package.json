@@ -9,14 +9,24 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
+<<<<<<< HEAD
     "express": "~4.16.1",
     "firebase": "^6.6.2",
     "firebase-admin": "^8.6.0",
+=======
+    "express": "^4.16.4",
+>>>>>>> fc03c89dc87d17119bb89fd29edbaae85635b41f
     "http-errors": "~1.6.3",
     "jquery": "^3.4.1",
     "jsdom": "^15.1.1",
     "moment": "^2.24.0",
+<<<<<<< HEAD
     "morgan": "~1.9.1",
     "supervisor": "^0.12.0"
+=======
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.1",
+    "morgan": "~1.9.1"
+>>>>>>> fc03c89dc87d17119bb89fd29edbaae85635b41f
   }
 }
