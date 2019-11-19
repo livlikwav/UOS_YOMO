@@ -81,7 +81,7 @@ var add_firebase_session = function(req, res) {
 var check = function(req, res){
 	console.log('user 모듈 안에 있는 adduser 호출됨.');
 
-	console.log(req.session.nickname);
+	console.log("닉네임"+req.session.nickname);
 	console.log(req.session.email);
 	console.log(req.param('club'));
 
