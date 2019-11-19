@@ -23,3 +23,6 @@ develop 브랜치로 업데이트
 - 최대한 파일 겹치지 않게 편집할 것
 
 # Coding Convention
+
+# Git 참고용
+- https://jw910911.tistory.com/16
