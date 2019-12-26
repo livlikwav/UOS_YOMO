@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var listRouter = require('./list');
+var eventRouter = require('./Event');
 /////////////////
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -11,9 +12,10 @@ var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
 
 var moment = require('moment');
+
 router.use('/list', listRouter);
 /* GET home page. */
-router.get('/', function(req, res, next) {
+var calendar= function(req, res, next) {
   console.log(req.session.nickname);
 	console.log(req.session.email);
   ///////현재 달력 출력//////////////
