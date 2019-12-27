@@ -59,19 +59,7 @@ body쪽에
                 firebase.auth().onAuthStateChanged(function(user) {
                   if (user) {
                     console.log('구글로그인 계정 확인되었습니다.');
-                    $.ajax({
-    									url:"/process/add_firebase_session",
-    									type:"POST",
-    									data: {"nickname":user.displayName,"email":user.email},
-    									success:function(data){
-    					            alert("완료!");
-    					            self.close();
-    					        },
-    					        error:function(jqXHR, textStatus, errorThrown){
-    					            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-    					            self.close();
-    					        }
-    								})
+
                   } else {
                     console.log('구글로그인 계정 확인 실패!!');
                   }
@@ -115,7 +103,19 @@ body쪽에
 
         <form id="form1" method="post" action="/process/check">
 					<table>
+						<tr class="row">
+							<td class="col1"><label id="contentsText">동아리</label></td>
+							<td class="col2" colspan="2">
+								<div class="ui input">
+									<input class="inputbox" type="text" name="club" />
+								</div>
+							</td>
+							<td></td>
+						</tr>
 						<tr valign="baseline">
+							<td></td>
+							<td>
+							</td>
 							<td id="buttonContainer" align="right"><input id="submitButton" class="ui primary button" type="submit" value="YOMO인증" name="" /></td>
 						</tr>
 					</table>

@@ -83,14 +83,16 @@ var check = function(req, res){
 
 	console.log("닉네임"+req.session.nickname);
 	console.log(req.session.email);
+	console.log(req.param('club'));
 
 	var database = req.app.get('database');
 
   var paramNickname=req.session.nickname;
   var paramEmail=req.session.email;
+	var paramClub = req.param('club');
 
 	if(database){
-		authUser(database, paramEmail, function(err, result) {
+		authUser(database, paramNickname, paramEmail, paramClub, function(err, result) {
 			if(err){throw err;}
 
 			if (result) {
@@ -121,17 +123,17 @@ var check = function(req, res){
 	}
 };
 
-var authUser = function(database, email, callback) {
+var authUser = function(database, nickname, email, club, callback) {
 	console.log('authUser 호출됨.');
 
 	// 1. 아이디를 이용해 검색
-	database.UserModel.findByEmail(email, function(err, results) {
+	database.UserModel.findByClub(club, function(err, results) {
 		if (err) {
 			callback(err, null);
 			return;
 		}
 
-		console.log('이메일 [%s]로 사용자 검색결과', email);
+		console.log('동아리 [%s]로 사용자 검색결과', club);
 		console.dir(results);
 
 		if (results.length > 0) {

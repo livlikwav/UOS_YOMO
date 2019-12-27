@@ -11,9 +11,7 @@ module.exports = {
 	server_port: 3000,
 	db_url: 'mongodb+srv://chaegangpower:1234@cluster0-u9rrd.mongodb.net/test?retryWrites=true&w=majority',
 	db_schemas: [
-	    {file:'./user_schema', collection:'users3', schemaName:'UserSchema', modelName:'UserModel'},
-			{file:'./club_schema', collection:'clubs', schemaName:'ClubSchema', modelName:'ClubModel'},
-			{file:'./event_schema', collection:'events', schemaName:'EventSchema', modelName:'EventModel'}
+	    {file:'./user_schema', collection:'users3', schemaName:'UserSchema', modelName:'UserModel'}
 	],
 	route_info: [
 	    //===== User =====//
