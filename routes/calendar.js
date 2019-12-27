@@ -84,7 +84,7 @@ var calendar= function(req, res, next) {
   }
 /////////////////////////////////////////////
   res.render('calendar', { title: '시립대 요즘뭐하지? YOMO' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
-});
+};
 
 module.exports = router;
 

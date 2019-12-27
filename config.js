@@ -12,20 +12,15 @@ module.exports = {
 	db_url: 'mongodb+srv://chaegangpower:1234@cluster0-u9rrd.mongodb.net/test?retryWrites=true&w=majority',
 	db_schemas: [
 	    {file:'./user_schema', collection:'users3', schemaName:'UserSchema', modelName:'UserModel'},
-<<<<<<< HEAD
 			{file:'./club_schema', collection:'clubs', schemaName:'ClubSchema', modelName:'ClubModel'},
 			{file:'./event_schema', collection:'events', schemaName:'EventSchema', modelName:'EventModel'}
-=======
-			{file:'./schedule_schema', collection:'schedule_list', schemaName:'ScheduleSchema', modelName:'ScheduleModel'},
-			{file:'./club_schema', collection:'club', schemaName:'ClubSchema', modelName:'ClubModel'}
->>>>>>> bb5336e1336e02d6f9bbf7a4520ec26271232d0b
 	],
 	route_info: [
 	    //===== User =====//
 	    {file:'./users', path:'/process/adduser', method:'adduser', type:'post'}				// user.adduser
 			,{file:'./users', path:'/process/check', method:'check', type:'post'}				// user.check yomo계정인지 확인해
 			,{file:'./users', path:'/process/add_firebase_session', method:'add_firebase_session', type:'post'}
-			,{file:'./Event', path:'/process/', method:'load_event', type:'post'}				// user.add_firebase_session
+							// user.add_firebase_session
 	   // ,{file:'./user', path:'/process/listuser', method:'listuser', type:'post'}			// user.listuser
 
 	    //===== Test =====//
