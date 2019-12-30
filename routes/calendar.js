@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var listRouter = require('./list');
+var eventRouter = require('./Event');
 /////////////////
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -11,12 +12,16 @@ var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
 
 var moment = require('moment');
+
 router.use('/list', listRouter);
 /* GET home page. */
-router.get('/', function(req, res, next) {
+var calendar= function(req, res, next) {
+  console.log(req.session.nickname);
+	console.log(req.session.email);
   ///////현재 달력 출력//////////////
   var today = new Date();
   var shift_mon=2;
+  // 몇달 옮겼는지
   today= new Date(today.getFullYear(),today.getMonth()-shift_mon,1);
   var first = new Date(today.getFullYear(),today.getMonth(),1);
   var end = new Date(today.getFullYear(),today.getMonth()+1,0);
@@ -53,6 +58,8 @@ router.get('/', function(req, res, next) {
   console.log(days);
 //////////////////////////////////////
 
+
+
 ////////이벤트 출력 ///////////////////////
   var event_array = new Array();
       // 이벤트 로딩 //
@@ -77,8 +84,7 @@ router.get('/', function(req, res, next) {
   }
 /////////////////////////////////////////////
   res.render('calendar', { title: '시립대 요즘뭐하지? YOMO' ,event_array:event_array, days: days , lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
-    // 이벤트 로딩
-});
+};
 
 module.exports = router;
 
