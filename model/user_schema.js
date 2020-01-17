@@ -43,7 +43,6 @@ Schema.createSchema = function(mongoose) {
 	UserSchema.static('findAll', function(callback) {
 		return this.find({}, callback);
 	});
-
 	console.log('UserSchema 정의함.');
 
 	return UserSchema;

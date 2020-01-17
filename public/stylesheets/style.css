@@ -32,6 +32,7 @@ body {
 }
 .calendar-header {
   text-align: center;
+
   padding: 20px 0;
   background: linear-gradient(to bottom, #fafbfd 0%, rgba(255, 255, 255, 0) 100%);
   border-bottom: 1px solid rgba(166, 168, 179, 0.12);
@@ -39,6 +40,7 @@ body {
 .calendar-header h1 {
   margin: 0;
   font-size: 18px;
+  display: inline-block;
 }
 .calendar-header p {
   margin: 5px 0 0 0;
@@ -53,6 +55,7 @@ body {
   color: rgba(81, 86, 93, 0.7);
   cursor: pointer;
   outline: 0;
+  display: inline-block;
 }
 
 .day {

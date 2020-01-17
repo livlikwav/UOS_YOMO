@@ -35,7 +35,7 @@ Schema.createSchema = function(mongoose) {
 	})
 	*/
 	// 스키마에 static 메소드 추가
-	ClubSchema.static('findByClub', function(club, callback) {
+	ClubSchema.static('findByClub', function(club, callback) { 
 		return this.find({club:club}, callback);
 	});
 

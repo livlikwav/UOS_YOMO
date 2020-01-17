@@ -22,7 +22,7 @@ database.init = function(app, config) {
 //데이터베이스에 연결하고 응답 객체의 속성으로 db 객체 추가
 function connect(app, config) {
 	console.log('connect() 호출됨.');
-
+	console.log(config.db_url);
 	// 데이터베이스 연결 : config의 설정 사용
 	mongoose.connect(config.db_url);
 	database.db = mongoose.connection;

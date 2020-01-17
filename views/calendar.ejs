@@ -17,13 +17,14 @@
     <% var arr= new Array(); %>
     <% for(var i=0 ;i < 35 ; i++) arr[i] = new Array(); %>
     <% for(var i=0 ;i < 35 ; i++){ for(var j = 0 ; j < 8 ; j++ ) {arr[i][j]=0;} } %>
-
     <% var names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]; %>
     <div class="calendar-container">
       <div class="calendar-header">
-        <h1>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='/?shift=<%= shift-1 %>';">Prev</button>
+        <h1 style="margin: 0px 150px">
            <%= month %> 월
         </h1>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href='/?shift=<%= shift+1 %>';">Next</button>
         <p><%= year %></p>
       </div>
       <div class="calendar">
@@ -31,7 +32,8 @@
           <span class="day-name"><%= names[i] %></span>
         <% } %>
         <% var first=0; %>
-        <% var tag_class = "day day--disabled"; %>
+        <% if(days[0]==1){ var tag_class = "day"; %>
+        <% }else{ var tag_class = "day day--disabled"; }%>
         <% var url=""; %>
         <% for(let i = 0 ; i < 7*lines ; i++){ %>
 
@@ -44,18 +46,19 @@
         <div class= '<%= tag_class %>' <% if(tag_class=="day"){ %> onclick="location.href= '<%= url %><%= days[i]%>';" <% }%>><%= days[i] %></div>
         <%}%>
 
-        <% for(let i = 0 ; i < 5 ; i++){%>
+        <% event_array.forEach(function(ign1,i,ign2){%>
 
-          <% var str_date = first+event_array[i].str; %>
+          <% var str_date = first+event_array[i].start; %>
           <% var row = parseInt((str_date-1) / 7)+2; %>
-          <% console.log(row); %>
+
           <% var col = str_date % 7; if(col==0){col=7;}%>
-          <% var len=event_array[i].end - event_array[i].str + 1; %>
+          <% var len=event_array[i].end - event_array[i].start + 1; %>
           <% var j; %>
           <% for(j = 0 ; j < 8 ; j++ ) {%>
-            <% console.log(j); %>
+
           	<% var suc=1; %>
           	<% for( var k=str_date;k<=first+event_array[i].end;k++){ %>
+
           		<% if(arr[k][j]==1){ %>
           			<% suc=0; %>
           			<% break; }}%>
@@ -65,7 +68,7 @@
           		<% break; }}%>
           <% if( j==8 ){ %>
           	<% console.log("에라남")} %>
-          <% j = j*(-40)-45; console.log(j);%>
+          <% j = j*(-40)-45;;%>
           <% if (col + len < 9) {%>
           <section class="task task--warning" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;bottom: <%= j %>px"  >
             <%=event_array[i].event_title %>
@@ -99,7 +102,7 @@
             <%}%>
 
           <%}%>
-        <%}%>
+        <%});%>
         <section class="task task--primary">Product Checkup 1
           <div class="task__detail">
             <h2>Product Checkup 1</h2>

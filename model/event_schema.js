@@ -12,7 +12,6 @@
 var Schema = {};
 
 Schema.createSchema = function(mongoose) {
-
 	// 스키마 정의
 	var EventSchema = mongoose.Schema({
       title: {type: String, required: true, unique: false, 'default':''}, // google user로 받음
@@ -37,12 +36,12 @@ Schema.createSchema = function(mongoose) {
 	*/
 
 	// 스키마에 static 메소드 추가
-	EventSchema.static('findByClub', function(club, callback) {
-		return this.find({club:club}, callback);
+  EventSchema.static('findByClub',async function(club, callback) {
+		return await this.find({club:club}, callback).exec();
 	});
 
-	EventSchema.static('findAll', function(callback) {
-		return this.find({}, callback);
+	EventSchema.static('findAll', async function(callback) {
+		return await this.find({}, callback).exec();
 	});
 
 	console.log('EventSchema 정의함.');
