@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var logger = require('morgan');
 
+var eventRouter = require('./routes/event')
 var indexRouter = require('./routes/calendar');
 var usersRouter = require('./routes/users');
 var config = require('./config');
@@ -28,6 +29,7 @@ app.use(expressSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/event', eventRouter);
 database.init(app, config);
 
 //라우팅 정보를 읽어들여 라우팅 설정

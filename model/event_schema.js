@@ -44,6 +44,10 @@ Schema.createSchema = function(mongoose) {
 		return await this.find({}, callback).exec();
 	});
 
+	EventSchema.static('insert', async function(data,callback) {
+		return await this.insert(data, callback).exec();
+	});
+
 	console.log('EventSchema 정의함.');
 
 	return EventSchema;
