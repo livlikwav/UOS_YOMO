@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>list page</title>
+    <link rel='stylesheet' href='/stylesheets/list.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'>
+     
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
+  </head>
+ 
+  <body>
+    <% var dayArray = new Array(); %>
+    <% for (let i=0; i<=4; i++) { %>
+        
+        <% if (event_array[i].str <=date && event_array[i].end >=date) { %>
+            <% dayArray.push(i); %>
+        <% } %>
+    <% } %>
+    <% if (dayArray.length!=0) { %>  
+    <% for (let i =0; i<dayArray.length; i++) { %>
+    <details>
+        
+            
+    	       
+                   <summary>
+                   <div class="summary-title"> <h4> <%= event_array[dayArray[i]].event_title %></h4> 
+                       <h6> <%= event_array[dayArray[i]].str_h %>:<%= event_array[dayArray[i]].str_m %> ~ <%= event_array[dayArray[i]].end_h %>:<%= event_array[dayArray[i]].end_m %></h6> </div>
+    		      <div class="summary-chevron-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18  9"></polyline></svg>
+                  </div>
+                  <div class="darkness"></div>
+    	       </summary>
+            
+    	       <div class="summary-content">
+               
+                    
+            
+            
+            
+            
+                   <div class="img">
+                     <img src="sample1.jpg" style="width: 500px; height: 500px;">
+                   </div>
+                   <div class = "content">
+                      <div class = "title">
+                          <h1><%= event_array[dayArray[i]].username %></h1>
+                      <div class = "description" >
+                         <%= event_array[dayArray[i]].description %>
+                      </div>    
+                   </div>
+                        
+                        
+                    
+                   
+                
+                </div>    
+    	   <div class="summary-chevron-down">
+    		  <svg xmlns="http://www.w3.org/2000  /svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </div>
+        </div>
+    </details>
+    <% } %>
+  <% } %>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type = "text/javascript" src="routes/bootstrap.js"></script>
+  </body>
+</html>

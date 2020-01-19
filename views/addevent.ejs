@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/list.css' />
+    </head>
+    <body>
+
+        <form method="post" action="" enctype="multipart/form-data">
+
+                <div class = "img">
+                <label for="file"><h1>Browse:</h1></label>
+
+                    <input type="file" name="file">
+                </div>
+
+            
+                <div class="content">
+                    <div class = "title">
+                        <label for="title"><h1>Title:</h1></label>
+
+                        <input style="width:500px; height:50px;" type="text" name="title">
+                    </div>
+
+                    <div class = "description">
+                        <label for="description"><h2>Description:</h2></label>
+
+                        <textarea style="width:500px;" name="description" rows="10"></textarea>
+                    </div>
+
+
+                <div>
+                    <button type="submit" id="login-btn" class="btn btn-success" type="button"><i class="fa fa-cloud-upload "></i> Upload Event</button>
+                </div>
+            </div>
+
+    </form>
+    </body>
+</html>
