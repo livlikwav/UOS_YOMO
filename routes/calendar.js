@@ -19,9 +19,6 @@ router.use('/list', listRouter);
 /* GET home page. */
 router.get('/', function(req, res, next) {
   req.session.referrer = req.protocol + '://' + req.get('host') + req.originalUrl;
-  console.log("==========referrer=============");
-  console.log(req.session.referrer);
-  console.log(req.isAuthenticated());
   ///////현재 달력 출력//////////////
   var shift=req.param('shift');
   if(shift==undefined)
@@ -83,7 +80,7 @@ router.get('/', function(req, res, next) {
         // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
 
         event_array[i]={start:str_d,end:end_d,event_title:events[i].title};
-        console.log(event_array);
+        //console.log(event_array);
       });
     }
     var rank=0;
