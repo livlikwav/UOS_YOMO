@@ -4,6 +4,7 @@ var listRouter = require('./list');
 var eventRouter = require('./Event');
 var database=require('../model/database');
 var util=require('util');
+const { isLoggedIn, isNotLoggedIn } = require('./checkLogin');
 /////////////////
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -14,12 +15,13 @@ var $ = jQuery = require('jquery')(window);
 /////////////jquery 연동////////////////
 
 var moment = require('moment');
-
 router.use('/list', listRouter);
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.session.nickname);
-	console.log(req.session.email);
+  req.session.referrer = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log("==========referrer=============");
+  console.log(req.session.referrer);
+  console.log(req.isAuthenticated());
   ///////현재 달력 출력//////////////
   var shift=req.param('shift');
   if(shift==undefined)
@@ -69,7 +71,7 @@ router.get('/', function(req, res, next) {
 
         var str=moment(events[i].start,"YYYY-MM-DDTHH:mm");
         var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
-        if(str.format("MM")*1!=today.getMonth()+1)
+        if(str.format("MM")*1!=today.getMonth()+1||str.format("YYYY")*1!=today.getFullYear())
           return;
         str_d=str.format("DD");
         end_d=end.format("DD");
@@ -84,7 +86,13 @@ router.get('/', function(req, res, next) {
         console.log(event_array);
       });
     }
-    res.render('calendar', { title: '시립대 요즘뭐하지? YOMO' ,event_array:event_array, days: days ,shift:shift, lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
+    var rank=0;
+    console.log();
+    if(req.session.passport==null)
+      rank=0;
+    else
+      rank=req.session.passport.user.rank;
+    res.render('calendar', { title: '시립대 요즘뭐하지? YOMO' ,isAuthenticated:req.isAuthenticated(),rank:rank,event_array:event_array, days: days ,shift:shift, lines: lines ,month:today.getMonth()+1, year:today.getFullYear()});
   });
 });
 

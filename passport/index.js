@@ -4,18 +4,15 @@ const google=require('./googleStrategy');
 
 module.exports = (passport) => {
   passport.serializeUser(function(user, done) {
-      done(null, user[0].id);
+      done(null, user);
   });
 
-  passport.deserializeUser(function(id, done) {
-      database['UserModel'].findOne(id,function(err,user){
-        console.log("뭕데이거"+user);
-        console.log("뭕데이거"+err);
-        console.log("뭕데이거"+id);
+  passport.deserializeUser(function(user, done) {
+      database['UserModel'].findOne(user.id,function(err,result){
         if(err)
           done(err)
         else
-          done(null, id);
+          done(null, user);
       });
   });
   google(passport);
