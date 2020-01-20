@@ -6,7 +6,7 @@ body {
 
 body {
   background: #f5f7fa;
-  padding: 40px 0;
+  padding-bottom: 40px;
   margin:0;
   box-sizing: border-box;
   font-family: Montserrat, "sans-serif";
@@ -32,6 +32,7 @@ body {
 }
 .calendar-header {
   text-align: center;
+
   padding: 20px 0;
   background: linear-gradient(to bottom, #fafbfd 0%, rgba(255, 255, 255, 0) 100%);
   border-bottom: 1px solid rgba(166, 168, 179, 0.12);
@@ -39,6 +40,7 @@ body {
 .calendar-header h1 {
   margin: 0;
   font-size: 18px;
+  display: inline-block;
 }
 .calendar-header p {
   margin: 5px 0 0 0;
@@ -53,6 +55,7 @@ body {
   color: rgba(81, 86, 93, 0.7);
   cursor: pointer;
   outline: 0;
+  display: inline-block;
 }
 
 .day {
@@ -65,7 +68,7 @@ body {
   box-sizing: border-box;
   color: #98a0a6;
   position: relative;
-  pointer-events: none;
+
   z-index: 1;
 }
 .day:nth-of-type(7n + 7) {
@@ -120,6 +123,7 @@ body {
   color: rgba(152, 160, 166, 0.6);
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f9f9fa' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
   cursor: not-allowed;
 }
 
@@ -136,7 +140,7 @@ body {
   grid-column: 4 / span 3;
   grid-row: 3;
   background: #fef0db;
-  align-self: center;
+  align-self: baseline;
   color: #fc9b10;
   margin-top: -5px;
 }
@@ -162,9 +166,10 @@ body {
   background: #4786ff;
   border: 0;
   border-radius: 4px;
-  grid-column: 3 / span 3;
+  grid-column: 7 / span 1;
   grid-row: 4;
-  align-self: end;
+  margin-top: 0px;
+  align-self: baseline;
   color: #fff;
   box-shadow: 0 10px 14px rgba(71, 134, 255, 0.4);
 }

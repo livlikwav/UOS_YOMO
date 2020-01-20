@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
   console.log(mom);
   console.log(mom.format('YYYY[-]MM[-]DD HH:mm'));
   // 이벤트에서 시간 파싱함
+  // index.ejs로 넘어감 렌더링은 views로 html은 public으로
   res.render('index', { title: 'Express' });
 });
 
