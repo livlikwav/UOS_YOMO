@@ -15,10 +15,10 @@ Schema.createSchema = function(mongoose) {
 
 	// 스키마 정의
 	var UserSchema = mongoose.Schema({
-      nickname: {type: String, required: true, unique: false, 'default':''}, // google user로 받음
-	    email: {type: String, required: true, unique: false, 'default':''}, // google user로 받음
+			id:{type: Number,required: true, unique: true},
+      name: {type: String, required: true, unique: false, 'default':''}, // google user로 받음
 	    club: {type: String, 'default':'none'}, // 필수는 아님
-	    rank: {type: Number, 'default': 3}, // 일반 사용자 : 3, 동아리 장 : 2, 마스터 계정 : 1
+	    rank: {type: Number, required:true, 'default': 3}, // 일반 사용자 : 3, 동아리 장 : 2, 마스터 계정 : 1
 	    created_at: {type: Date, index: {unique: false}, 'default': Date.now},
 	    updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
 	});
@@ -43,6 +43,17 @@ Schema.createSchema = function(mongoose) {
 	UserSchema.static('findAll', function(callback) {
 		return this.find({}, callback);
 	});
+
+	UserSchema.static('findOne', function(id,callback) {
+		return this.find({id:id}, callback);
+	});
+
+	UserSchema.static('create', function(obj,callback) {
+		var user=mongoose.model('users3', UserSchema)
+		var newObj = new user(obj);
+		return newObj.save(callback);
+	});
+
 	console.log('UserSchema 정의함.');
 
 	return UserSchema;

@@ -70,7 +70,7 @@
           	<% console.log("에라남")} %>
           <% j = j*(-40)-45;;%>
           <% if (col + len < 9) {%>
-          <section class="task task--warning" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;bottom: <%= j %>px"  >
+          <section class="task task--primary" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;bottom: <%= j %>px"  >
             <%=event_array[i].event_title %>
           </section>
           <% }else{ %>
@@ -80,19 +80,19 @@
             <% var row_add = row+1; %>
             <% var len_col = len - temp; %>
             <% var real_len_col = len_col; %>
-            <section class = "task task--warning" style="grid-column: <%= col %> / span <%= temp %>; grid-row: <%= row %>; bottom: <%= j %>px" >
+            <section class = "task task--primary" style="grid-column: <%= col %> / span <%= temp %>; grid-row: <%= row %>; bottom: <%= j %>px" >
             <%= event_array[i].event_title %>
           </section>
             <% while(len_col>0) { %>
                 <% if ( len_col <=7) { %>
-                    <section class = "task task--warning" style="grid-column: 1 / span <%= len_col %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
+                    <section class = "task task--primary" style="grid-column: 1 / span <%= len_col %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
                         <%= event_array[i].event_title %>
                     </section>
 
                 <% }else{ %>
                     <% var seven = 7; %>
           <!-- 제발 -->
-                    <section class = "task task--warning" style="grid-column: 1 / span <%= seven %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
+                    <section class = "task task--primary" style="grid-column: 1 / span <%= seven %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
                         <%= event_array[i].event_title %>
                     </section>
 
@@ -103,13 +103,7 @@
 
           <%}%>
         <%});%>
-        <section class="task task--primary">Product Checkup 1
-          <div class="task__detail">
-            <h2>Product Checkup 1</h2>
-            <p>15-17th November</p>
-          </div>
-        </section>
-        <section class="task task--info">Product Checkup 2</section>
+
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
