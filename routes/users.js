@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 
@@ -72,6 +73,7 @@ var add_firebase_session = function(req, res) {
   console.log(req.body);
 	req.session.nickname=req.body.nickname;
 	req.session.email=req.body.email;
+	req.session.club='';
 	console.log("req.session.nickname : "+req.session.nickname);
 	console.log("req.session.email : "+req.session.email);
   res.end();
@@ -89,10 +91,12 @@ var check = function(req, res){
 
   var paramNickname=req.session.nickname;
   var paramEmail=req.session.email;
-	var paramClub = req.param('club');
+
+	console.log("세션 받아온 정보 닉네임 "+paramNickname);
+	console.log("세션 받아온 정보 이메일 "+paramEmail);
 
 	if(database){
-		authUser(database, paramNickname, paramEmail, paramClub, function(err, result) {
+		authUser(database, paramEmail, function(err, result) {
 			if(err){throw err;}
 
 			if (result) {
@@ -123,17 +127,17 @@ var check = function(req, res){
 	}
 };
 
-var authUser = function(database, nickname, email, club, callback) {
+var authUser = function(database, email, callback) {
 	console.log('authUser 호출됨.');
 
 	// 1. 아이디를 이용해 검색
-	database.UserModel.findByClub(club, function(err, results) {
+	database.UserModel.findByEmail(email, function(err, results) {
 		if (err) {
 			callback(err, null);
 			return;
 		}
 
-		console.log('동아리 [%s]로 사용자 검색결과', club);
+		console.log('이메일 [%s]로 사용자 검색결과', email);
 		console.dir(results);
 
 		if (results.length > 0) {
