@@ -137,20 +137,15 @@ var events=[{
       }]
 ;
 
-    
 
 
-
-
-module.exports = router;    
-    
 //이거 나중에 디비연동으로 때울꺼임
 router.get('/', function(req, res,  next) {
   var date=req.param('date');
-  
-  var event_array = new Array();    
+
+  var event_array = new Array();
   for(var i =0;i<5;i++){
-    
+
   var str=moment(events[i].start,"YYYY-MM-DDTHH:mm");
   var end=moment(events[i].end,"YYYY-MM-DDTHH:mm");
   str_d=str.format("DD");
@@ -172,15 +167,16 @@ router.get('/', function(req, res,  next) {
   // css에 있는 grid-column grid-row 동적으로 수정해주면 완벽
   event_array[i]={str:str_d,end:end_d,event_title:events[i].title, description:events[i].description , filename:events[i].filename, str_h:str_h, str_m:str_m, end_h:end_h, end_m:end_m, username:events[i].username};
   console.log(event_array);
-  
+
 }
-    
-    
-    
+
+
+
   res.render('list' , {date :date, event_array :event_array});
 });
-    
-    
-    
-    
 
+
+
+
+
+module.exports = router;

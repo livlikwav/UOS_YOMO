@@ -36,7 +36,6 @@
         <% }else{ var tag_class = "day day--disabled"; }%>
         <% var url=""; %>
         <% for(let i = 0 ; i < 7*lines ; i++){ %>
-
           <% if(i > 0 && i < 25 && days[i-1] > days[i] ) {%>
           <% first=i;%>
           <% url="./list?date="; %>
@@ -47,18 +46,14 @@
         <%}%>
 
         <% event_array.forEach(function(ign1,i,ign2){%>
-
           <% var str_date = first+event_array[i].start; %>
           <% var row = parseInt((str_date-1) / 7)+2; %>
-
           <% var col = str_date % 7; if(col==0){col=7;}%>
           <% var len=event_array[i].end - event_array[i].start + 1; %>
           <% var j; %>
           <% for(j = 0 ; j < 8 ; j++ ) {%>
-
           	<% var suc=1; %>
           	<% for( var k=str_date;k<=first+event_array[i].end;k++){ %>
-
           		<% if(arr[k][j]==1){ %>
           			<% suc=0; %>
           			<% break; }}%>
@@ -70,84 +65,38 @@
           	<% console.log("에라남")} %>
           <% j = j*(-40)-45;;%>
           <% if (col + len < 9) {%>
-          <section class="task task--warning" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;bottom: <%= j %>px"  >
+          <section class="task task--primary" style="grid-column: <%= col %> / span <%= len %>;grid-row:<%= row %>;bottom: <%= j %>px"  >
             <%=event_array[i].event_title %>
           </section>
           <% }else{ %>
           <!-- 하위 -->
-
             <% var temp = 8-col; %>
             <% var row_add = row+1; %>
             <% var len_col = len - temp; %>
             <% var real_len_col = len_col; %>
-            <section class = "task task--warning" style="grid-column: <%= col %> / span <%= temp %>; grid-row: <%= row %>; bottom: <%= j %>px" >
+            <section class = "task task--primary" style="grid-column: <%= col %> / span <%= temp %>; grid-row: <%= row %>; bottom: <%= j %>px" >
             <%= event_array[i].event_title %>
           </section>
             <% while(len_col>0) { %>
                 <% if ( len_col <=7) { %>
-                    <section class = "task task--warning" style="grid-column: 1 / span <%= len_col %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
+                    <section class = "task task--primary" style="grid-column: 1 / span <%= len_col %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
                         <%= event_array[i].event_title %>
                     </section>
-
                 <% }else{ %>
                     <% var seven = 7; %>
           <!-- 제발 -->
-                    <section class = "task task--warning" style="grid-column: 1 / span <%= seven %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
+                    <section class = "task task--primary" style="grid-column: 1 / span <%= seven %>; grid-row:<%= row_add %>; bottom: <%= j %>px" >
                         <%= event_array[i].event_title %>
                     </section>
-
                 <% } %>
                     <% row_add++; %>
                     <% len_col -= 7; %>
             <%}%>
-
           <%}%>
         <%});%>
-        <section class="task task--primary">Product Checkup 1
-          <div class="task__detail">
-            <h2>Product Checkup 1</h2>
-            <p>15-17th November</p>
-          </div>
-        </section>
-        <section class="task task--info">Product Checkup 2</section>
+
       </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#config-web-app -->
-    <!-- 기능 추가할때마다 소스 받으면 됩니다-->
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
-    <script>
-
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDXzsBUt8pSmanFTMgG0otklsClBV8HaNE",
-            authDomain: "uosyomo.firebaseapp.com",
-            databaseURL: "https://uosyomo.firebaseio.com",
-            projectId: "uosyomo",
-            storageBucket: "uosyomo.appspot.com",
-            messagingSenderId: "1034521288050",
-            appId: "1:1034521288050:web:e1b96b5250007cff35d1eb"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // 구글 인증 기능 추가
-        var provider = new firebase.auth.GoogleAuthProvider();
-        // 인증하기
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            console.log('user로그인 : ',JSON.stringify(user));
-          } else {
-            console.log('로그아웃');
-            // No user is signed in.
-          }
-        });
-      </script>
-
     <!--footer.ejs include-->
     <% include ./footer %>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

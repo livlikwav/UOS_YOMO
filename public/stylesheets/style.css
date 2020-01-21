@@ -168,7 +168,8 @@ body {
   border-radius: 4px;
   grid-column: 7 / span 1;
   grid-row: 4;
-  align-self: end;
+  margin-top: 0px;
+  align-self: baseline;
   color: #fff;
   box-shadow: 0 10px 14px rgba(71, 134, 255, 0.4);
 }

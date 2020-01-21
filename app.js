@@ -4,10 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var logger = require('morgan');
-
+var passport = require('passport');
+var passportConfig = require('./passport');
+var loginRouter = require('./routes/login')
 var eventRouter = require('./routes/event')
 var indexRouter = require('./routes/calendar');
-var usersRouter = require('./routes/users');
 var config = require('./config');
 var database = require('./model/database');
 var route_loader=require('./routes/route_loader');
@@ -26,10 +27,18 @@ app.use(expressSession({
 	resave:true,
 	saveUninitialized:true
 }));
+
+
+passportConfig(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/event', eventRouter);
+app.use('/login', loginRouter);
+
 database.init(app, config);
 
 //라우팅 정보를 읽어들여 라우팅 설정

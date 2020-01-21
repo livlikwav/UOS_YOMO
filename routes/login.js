@@ -1,26 +1,30 @@
-var express = require('express');
-var router = express.Router();
-var admin = require("firebase-admin");
-var firebase = require("firebase");
-var serviceAccount = require("../serviceAccountkey.json");
+const express = require('express');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const { isLoggedIn, isNotLoggedIn } = require('./checkLogin');
+const router = express.Router();
 
-router.get('/', function(req, res, next) {
-  var firebaseConfig = {
-      apiKey: "AIzaSyDXzsBUt8pSmanFTMgG0otklsClBV8HaNE",
-      authDomain: "uosyomo.firebaseapp.com",
-      databaseURL: "https://uosyomo.firebaseio.com",
-      projectId: "uosyomo",
-      storageBucket: "uosyomo.appspot.com",
-      messagingSenderId: "1034521288050",
-      appId: "1:1034521288050:web:e1b96b5250007cff35d1eb",
-      credential: admin.credential.cert(serviceAccount)
-  };
-  // Initialize Firebase
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://uosyomo.firebaseio.com"
-  });
-  res.render("login");
+router.get('/logout', isLoggedIn, (req, res) => {
+  console.log(req.session);
+
+  var url='/';
+  console.log(req.session.referrer);
+  if( req.session.referrer )
+    url=req.session.referrer;
+  req.logout();
+  req.session.destroy();
+  res.redirect(url);
+});
+
+router.get('/google', passport.authenticate('google',{scope:['profile']}));
+
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/event'}),
+ (req, res) => {
+   var url='/';
+   console.log(req.session.referrer);
+  if( req.session.referrer )
+    url=req.session.referrer;
+  res.redirect(url);
 });
 
 module.exports = router;
