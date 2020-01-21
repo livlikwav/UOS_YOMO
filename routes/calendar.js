@@ -94,10 +94,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-<<<<<<< HEAD
-=======
-
-
-
-//이거 나중에 디비연동으로 때울꺼임
->>>>>>> 6bec26082069b9cc221587b4346e9e12de34c65a
