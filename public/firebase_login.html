@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+파이어 베이스 이용해서 웹서버 구현해봤구요.
+기본적으로 본인의 파이어베이스 프로젝트가 있어야 실행이됩니다.
+
+들어가면 바로 구글 계정인증이 됩니다. 페이스북도 가능하구요.
+
+body쪽에
+데이버베이스 쓰기 읽기 수정 삭제 구현이 되어있어요.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+  		  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+        <!-- jQuery  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <h1>UOSYOMO 파이어베이스 로그인입니다.</h1>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#config-web-app -->
+        <!-- 기능 추가할때마다 소스 받으면 됩니다-->
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="../public/js/materialize.min.js"></script>
+        <script src="/firebaseinit.js"></script>
+
+        <script>
+            // 구글 인증 기능 추가
+            var provider = new firebase.auth.GoogleAuthProvider();
+
+            // 인증하기
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+
+                console.log(token);
+                console.log(user);
+                console.log(user.displayName);	// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+/*
+                var database = firebase.database();
+
+                // 데이터베이스에 쓰기
+                database.ref('test/').push({"name": user.displayName, "email": user.email});
+
+                var dbTestRef = database.ref('test/')
+                dbTestRef.on('child_added', function(data){
+                    console.log(data.val())
+                });
+*/
+                firebase.auth().onAuthStateChanged(function(user) {
+                  if (user) {
+                    console.log('구글로그인 계정 확인되었습니다.');
+                    $.ajax({
+    									url:"/process/add_firebase_session",
+    									type:"POST",
+    									data: {"nickname":user.displayName,"email":user.email},
+    									success:function(data){
+    					            alert("완료!");
+    					            self.close();
+    					        },
+    					        error:function(jqXHR, textStatus, errorThrown){
+    					            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+    					            self.close();
+    					        }
+    								})
+                  } else {
+                    console.log('구글로그인 계정 확인 실패!!');
+                  }
+                });
+
+            // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+
+            // 주석처리해놨고 하나씩 써보면 된답니다.
+            // [데이터베이스] SDK 초기화
+            //var database = firebase.database();
+            // 데이터베이스에 쓰기
+            //database.ref('test/').push({"name": "테스트", "location": "seoul"})
+
+            /*
+            // 데이터베이스에서 데이터 읽기
+            var dbTestRef = database.ref('test/')
+            dbTestRef.on('child_added', function(data){
+                console.log(data.val())
+            })
+
+            // 데이터베이스 데이터 수정
+            // dbTestRef2 = database.ref('test/' + [key값]).update([수정할 값])
+            dbTestRef2 = database.ref('test/-Lp8H7ntzY_bi5FFjB9x').update({
+                intro: "인삿말 수정"
+            })
+
+            // 데이터베이스 데이터 삭제
+            dbTestRef3 = database.ref('test/-L4eNay35sc0db4oigfO').remove()
+            */
+        </script>
+
+        <form id="form1" method="post" action="/process/check">
+					<table>
+						<tr valign="baseline">
+							<td id="buttonContainer" align="right"><input id="submitButton" class="ui primary button" type="submit" value="YOMO인증" name="" /></td>
+						</tr>
+					</table>
+				</form>
+    </body>
+</html>
